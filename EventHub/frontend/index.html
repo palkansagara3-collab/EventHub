@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EventHub — Online Event Ticket Booking</title>
+  <meta name="description" content="Browse concerts, sports and cultural events and book tickets instantly with EventHub." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ======================= HEADER ======================= -->
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#">
+        <span class="brand-mark">EH</span>
+        <span>Event<strong>Hub</strong></span>
+      </a>
+
+      <nav class="nav">
+        <a href="#events">Events</a>
+        <a href="#bookings">My Bookings</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="themeToggle" class="btn btn-ghost" title="Switch theme">🌙</button>
+        <span id="userBadge" class="user-badge hidden"></span>
+        <button id="authBtn" class="btn btn-primary">Sign in</button>
+        <button id="logoutBtn" class="btn btn-ghost hidden">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================== HERO ======================== -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Live now · 4 upcoming events</p>
+      <h1>Every great night<br /><span class="accent">starts with a ticket.</span></h1>
+      <p class="lede">Concerts, stadium finals and cultural festivals — booked in seconds, delivered as a digital ticket.</p>
+      <a href="#events" class="btn btn-primary btn-lg">Browse events</a>
+    </div>
+  </section>
+
+  <!-- ======================= EVENTS ======================= -->
+  <main class="wrap">
+    <section id="events">
+      <div class="section-head">
+        <h2>Upcoming events</h2>
+        <div class="filters" id="filters">
+          <button class="chip is-active" data-cat="ALL">All</button>
+          <button class="chip" data-cat="CONCERT">Concerts</button>
+          <button class="chip" data-cat="SPORTS">Sports</button>
+          <button class="chip" data-cat="CULTURAL">Cultural</button>
+        </div>
+      </div>
+
+      <div id="eventGrid" class="grid"></div>
+    </section>
+
+    <!-- ===================== MY BOOKINGS ==================== -->
+    <section id="bookings">
+      <div class="section-head"><h2>My bookings</h2></div>
+      <div id="bookingList" class="booking-list">
+        <p class="muted">No bookings yet. Pick an event above to get started.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">© <span id="year"></span> EventHub · Java + MySQL + Vanilla JS</div>
+  </footer>
+
+  <!-- ==================== AUTH MODAL ====================== -->
+  <div id="authModal" class="modal hidden">
+    <div class="modal-card">
+      <button class="modal-close" data-close>✕</button>
+
+      <div class="tabs">
+        <button class="tab is-active" data-tab="login">Sign in</button>
+        <button class="tab" data-tab="register">Register</button>
+      </div>
+
+      <!-- login -->
+      <form id="loginForm" class="form">
+        <label>E-mail<input type="email" name="email" value="riya@example.com" required /></label>
+        <label>Password<input type="password" name="password" value="user123" required /></label>
+        <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+        <p class="hint">Demo: <code>admin@eventhub.com / admin123</code> · <code>riya@example.com / user123</code></p>
+      </form>
+
+      <!-- register -->
+      <form id="registerForm" class="form hidden">
+        <label>Full name<input name="name" required /></label>
+        <label>E-mail<input type="email" name="email" required /></label>
+        <label>Phone<input name="phone" /></label>
+        <label>Password<input type="password" name="password" minlength="6" required /></label>
+        <button class="btn btn-primary btn-block" type="submit">Create account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- =================== BOOKING MODAL ==================== -->
+  <div id="bookModal" class="modal hidden">
+    <div class="modal-card">
+      <button class="modal-close" data-close>✕</button>
+      <h3 id="bookTitle">Book tickets</h3>
+      <p id="bookMeta" class="muted"></p>
+
+      <form id="bookForm" class="form">
+        <label>Ticket category
+          <select name="categoryId" id="bookCategory" required></select>
+        </label>
+        <label>Quantity
+          <input type="number" name="quantity" id="bookQty" min="1" max="10" value="2" required />
+        </label>
+        <p class="total">Total: <strong id="bookTotal">₹0</strong></p>
+        <button class="btn btn-primary btn-block" type="submit">Confirm booking</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
